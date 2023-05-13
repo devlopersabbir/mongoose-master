@@ -15,8 +15,8 @@ app.get("/", (req: Request, res: Response, next: NextFunction) => {
 	/*
     step-1 : Interface -dode
     step-2 : schema -done
-    step-3 : model
-    step-4 : Database query
+    step-3 : model - done
+    step-4 : Database query on Model -done
     
     */
 
@@ -25,85 +25,11 @@ app.get("/", (req: Request, res: Response, next: NextFunction) => {
 
 	// creating an interface
 
-	interface IUser {
-		id: string;
-		role: "student";
-		password: string;
-		name: {
-			firstName: string;
-			middleName?: string;
-			lastName: string;
-		};
-		dateOfBirth?: string;
-		gender: "male" | "female";
-		email?: string;
-		contactNo: string;
-		emergencyContactNo: string;
-		presentAddress: string;
-		permanentAddress: string;
-	}
+	
 
 	// creating schema using interface
 
-	const userSchema = new Schema<IUser>({
-		id: {
-			type: String,
-			required: true,
-			unique: true,
-		},
-		role: {
-			type: String,
-			required: true,
-		},
-		password: {
-			type: String,
-			required: true,
-		},
-		name: {
-			firstName: {
-				type: String,
-				required: true,
-			},
-			middleName: {
-				type: String,
-			},
-			lastName: {
-				type: String,
-				required: true,
-			},
-		},
-		dateOfBirth: {
-			type: String,
-		},
-		gender: {
-			type: String,
-			enum: ["male", "female"],
-		},
-		email: {
-			type: String,
-		},
-		contactNo: {
-			type: String,
-			required: true,
-		},
-		emergencyContactNo: {
-			type: String,
-			required: true,
-		},
-		presentAddress: {
-			type: String,
-			required: true,
-		},
-		permanentAddress: {
-			type: String,
-			required: true,
-		},
-	});
-
-	// creating model
-
-	const User = model<IUser>("User", userSchema);
-
+	
 	const createUserToDB = async () => {
 		const user = new User({
 			id: "454578",
@@ -129,3 +55,17 @@ app.get("/", (req: Request, res: Response, next: NextFunction) => {
 });
 
 export default app;
+
+// pattern MVC=> model,view,controller ,
+//modular => route,utils,interface,
+
+/*
+
+ 1.interface = interface.ts
+ 2. schema, Model = model.ts
+
+ route 
+ 3.route function = controler.ts
+ 4. database query function = service.ts
+
+*/
