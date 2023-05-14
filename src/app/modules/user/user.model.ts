@@ -1,7 +1,7 @@
 import { Model, Schema, model } from "mongoose";
-import { IUser, IUserMethods } from "./user.interface";
+import { IUser, IUserMethods, UserModel } from "./user.interface";
 
-type UserModel = Model<IUser, {}, IUserMethods>;
+// type UserModel = Model<IUser, {}, IUserMethods>;
 
 const userSchema = new Schema<IUser, UserModel, IUserMethods>({
     id: {
@@ -57,6 +57,13 @@ const userSchema = new Schema<IUser, UserModel, IUserMethods>({
         required: true,
     },
 });
+
+// static means class and class means this.any
+userSchema.static('getAdminUsers', async function getAdminUsers() {
+   const admins =await this.find({role: 'admin'})
+   console.log(admins);
+   return admins;
+  });
 
 userSchema.method('fullName', function fullName() {
     return this.name.firstName + ' ' + this.name.lastName;
