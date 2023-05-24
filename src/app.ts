@@ -24,10 +24,6 @@ export default app;
 
 
 
-
-
-
-
 // inserting a text data into mongodb
 /*
     step-1 : Interface -dode
@@ -36,8 +32,7 @@ export default app;
     step-4 : Database query on Model -done
     
     */
-// res.send('Hello World!')
-// next()
+
 // creating an interface
 // creating schema using interface
 
