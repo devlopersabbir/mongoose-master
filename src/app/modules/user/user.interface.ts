@@ -1,5 +1,14 @@
 import { HydratedDocument, Model } from "mongoose";
 
+/**
+ * You can use enum
+ * for example
+ */
+export enum EGender {
+	MELE = "MELE",
+	FEMALE = "FEMALE"
+}
+
 export interface IUser {
 	id: string;
 	role: "student";
@@ -10,7 +19,7 @@ export interface IUser {
 		lastName: string;
 	};
 	dateOfBirth?: string;
-	gender: "male" | "female";
+	gender: EGender;
 	email?: string;
 	contactNo: string;
 	emergencyContactNo: string;
